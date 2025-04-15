@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final FocusNode _enrollmentNumberFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
 
-  TextEditingController username = TextEditingController(text: "114617");
+  TextEditingController username = TextEditingController(text: "92100133059");
   TextEditingController password = TextEditingController(text: "DEVAN@114617");
 
   LoginController loginControl = Get.put(LoginController());
@@ -60,17 +60,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           cursorColor: muColor,
                           keyboardType: TextInputType.number,
                           inputFormatters: [
-                            LengthLimitingTextInputFormatter(6),
+                            LengthLimitingTextInputFormatter(11),
                           ],
                           textAlignVertical: TextAlignVertical.center,
                           decoration: InputDecoration(
-                            labelText: 'Student GR No.',
-                            hintText: 'Enter Student GR No.',
+                            labelText: 'Student Enrollment No.',
+                            hintText: 'Enter Enrollment No.',
                             hintStyle: TextStyle(
                               fontFamily: "mu_reg",
                               color: muGrey2,
                             ),
-                            prefixIcon: const HugeIcon(
+                            prefixIcon:  HugeIcon(
                                 icon: HugeIcons.strokeRoundedUserAccount,
                                 color: Colors.grey),
                             focusedBorder: OutlineInputBorder(

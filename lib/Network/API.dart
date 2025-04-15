@@ -2,14 +2,14 @@ String host = "https://trivially-active-bream.ngrok-free.app";
 String serverPath = "/ict-server/api/index.php";
 
 String currentVersion = "1.0";
-String validApiKey = "your-secure-api-key";
+String validApiKey = "ictmu";
 String updateURL = 'https://devanpatel28.blogspot.com/';
 
 String updatePasswordAPI = '$host$serverPath/Password/updatePassword';
 
 String validateVersionAPI = '$host$serverPath/AppVersion/check';
-String validateLoginAPI = '$host$serverPath/Parent/login';
-String validateLogoutAPI = '$host$serverPath/Parent/logout';
+String validateLoginAPI = '$host$serverPath/Student/login';
+String validateLogoutAPI = '$host$serverPath/Student/logout';
 
 String totalAttendanceAPI = '$host$serverPath/Attendance/TotalAttendance';
 String attendanceByDateAPI = '$host$serverPath/Attendance/AttendanceByDate';
@@ -22,7 +22,19 @@ String examListAPI = '$host$serverPath/Exam/getExamList';
 String holidayListAPI = '$host$serverPath/Holiday/getAllHolidays';
 String upcomingHolidayAPI = '$host$serverPath/Holiday/getNextUpcomingHoliday';
 
-String zoomLinkListAPI = '$host$serverPath/ZoomLink/getUpcomingLinks';
+String recentlyPlacedAPI = '$host$serverPath/Placement/recentlyPlaced';
+String companyListAPI = '$host$serverPath/Placement/companyList';
+String campusDriveListAPI = '$host$serverPath/Placement/campusDriveByStudentList';
+String statusUpdateCampusDriveAPI = '$host$serverPath/Placement/statusUpdateCampusDrive';
+String campusDriveStudentRoundsAPI = '$host$serverPath/Placement/campusDriveStudentRoundList';
+
+String leaveRequestAPI = '$host$serverPath/Leave/leaveRequest';
+String leaveHistoryAPI = '$host$serverPath/Leave/getLeaveHistory';
+
+String interviewBankListAPI = '$host$serverPath/InterviewBank/list';
+
+String eventListAPI = '$host$serverPath/Event/list';
+String upcomingEventAPI = '$host$serverPath/Event/getUpcomingEvent';
 
 String studentImageAPI(gr) {
   String api =

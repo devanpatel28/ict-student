@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ict_mu_students/Helper/Colors.dart';
+import 'package:ict_mu_students/Helper/colors.dart';
 
 import '../Helper/Components.dart';
 
@@ -8,12 +8,14 @@ class Heading1 extends StatelessWidget {
   final String text;
   final double fontSize;
   final double leftPadding;
+  final TextOverflow textWrap;
 
   const Heading1({
     super.key,
     required this.text,
     required this.fontSize,
     required this.leftPadding,
+    this.textWrap = TextOverflow.visible,
   });
 
   @override
@@ -34,12 +36,15 @@ class Heading1 extends StatelessWidget {
               ),
             ),
           ),
-          Text(
-            text,
-            style: TextStyle(
-              fontFamily: "mu_bold",
-              fontSize: getSize(context, fontSize),
-              letterSpacing: 0.1,
+          Flexible(
+            child: Text(
+              text,
+              style: TextStyle(
+                fontFamily: "mu_bold",
+                fontSize: getSize(context, fontSize),
+                letterSpacing: 0.1,
+              ),
+              overflow: textWrap,
             ),
           ),
         ],

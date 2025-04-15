@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Helper/Colors.dart';
+import '../Helper/colors.dart';
 import '../Helper/size.dart';
 
 class DetailWithHeading extends StatelessWidget {

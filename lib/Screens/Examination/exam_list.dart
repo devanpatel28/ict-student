@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:ict_mu_students/Controllers/exam_list_controller.dart';
 import 'package:ict_mu_students/Model/exam_list_model.dart';
 import 'package:ict_mu_students/Widgets/exam_detail_card.dart';
-import '../../Helper/Colors.dart';
+import '../../Helper/colors.dart';
 import '../../Widgets/adaptive_refresh_indicator.dart';
 import '../Exception/data_not_found.dart';
 import '../Loading/adaptive_loading_screen.dart';

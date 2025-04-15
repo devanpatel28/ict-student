@@ -1,15 +1,15 @@
 import 'dart:convert';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import '../Model/user_data_model.dart';
 import '../Network/API.dart';
 
 class LogoutController extends GetxController {
 
+  RxBool isLoadingLogout = false.obs;
   //Logout
   Future<bool> logout(String username) async {
+    isLoadingLogout.value = true;
     try {
       Map<String, String> body = {
         'username': username,
@@ -24,17 +24,11 @@ class LogoutController extends GetxController {
       );
 
       if (response.statusCode == 200) {
-        // final responseData = json.decode(response.body);
-
-        // UserData userData = UserData.fromJson(responseData);
-
         final box = GetStorage();
-        // await CachedNetworkImage.evictFromCache(
-        //     studentImageAPI(userData.studentDetails!.studentId));
         await box.write('loggedin', false);
         await box.write('userdata', null);
         Get.offNamed('/login');
-
+        isLoadingLogout.value = false;
         return true;
       } else {
         return false;

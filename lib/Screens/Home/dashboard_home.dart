@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:ict_mu_students/Helper/Components.dart';
@@ -59,12 +61,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 "Sem: ${userData.classDetails?.semester}  Class: ${userData.classDetails?.className} - ${userData.classDetails?.batch?.toUpperCase()}",
                 CachedNetworkImage(
                   imageUrl: studentImageAPI(userData.studentDetails!.grNo),
-                  placeholder: (context, url) => const HugeIcon(
+                  placeholder: (context, url) =>  HugeIcon(
                     icon: HugeIcons.strokeRoundedUser,
                     size: 30,
                     color: Colors.black,
                   ),
-                  errorWidget: (context, url, error) => const HugeIcon(
+                  errorWidget: (context, url, error) =>  HugeIcon(
                     icon: HugeIcons.strokeRoundedUser,
                     size: 30,
                     color: Colors.black,
@@ -78,7 +80,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Container(
-                height: 300,
+                height: 450,
                 width: double.infinity,
                 // color: Colors.red,
                 child: GridView.count(
@@ -93,13 +95,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         name: "Attendance",
                         iconData: HugeIcons.strokeRoundedDocumentValidation,
                         route: "/attendance",
-                        routeArg: {
-                          'student_id': userData.studentDetails?.studentId
-                        }),
-                    TapIcon(
-                        name: "Faculty Contact",
-                        iconData: HugeIcons.strokeRoundedContact01,
-                        route: "/faculty_contact",
                         routeArg: {
                           'student_id': userData.studentDetails?.studentId
                         }),
@@ -121,44 +116,63 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         name: "Holidays",
                         iconData: HugeIcons.strokeRoundedSun01,
                         route: "/holidayList"),
+
                     TapIcon(
-                        name: "Meeting",
-                        iconData: HugeIcons.strokeRoundedMeetingRoom,
-                        route: "/meetingList",
+                        name: "Placements",
+                        iconData: HugeIcons.strokeRoundedGraduationScroll,
+                        route: "/placements",
+                        routeArg: {
+                          'student_id': userData.studentDetails?.studentId,
+                          'batch_id': userData.studentDetails?.batchId
+                        }),
+                    TapIcon(
+                        name: "Leave",
+                        iconData: HugeIcons.strokeRoundedMessageUser01,
+                        route: "/leave",
                         routeArg: {
                           'student_id': userData.studentDetails?.studentId
                         }),
+                    TapIcon(
+                        name: "Events",
+                        iconData: HugeIcons.strokeRoundedRanking,
+                        route: "/events",
+                        ),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                width: getWidth(context, 0.7),
-                decoration: BoxDecoration(
-                    color: muGrey,
-                    borderRadius: BorderRadius.horizontal(
-                        right: Radius.circular(borderRad * 2))),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Upcoming Holiday : ",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        if (upcomingHoliday.holidayDate.isNotEmpty)
-                          Text(
-                              "${DateFormat('dd-MM-yyyy').format(DateTime.parse(upcomingHoliday.holidayDate))} - ${upcomingHoliday.holidayName}",
-                              style: TextStyle(fontSize: 17, color: muColor)),
-                      ]),
+            InkWell(
+              onTap: () => Get.toNamed("/holidayList"),
+              highlightColor: backgroundColor,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  width: getWidth(context, 0.7),
+                  decoration: BoxDecoration(
+                      color: muGrey,
+                      borderRadius: BorderRadius.horizontal(
+                          right: Radius.circular(borderRad * 2))),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Upcoming Holiday : ",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          if (upcomingHoliday.holidayDate.isNotEmpty)
+                            Text(
+                                "${DateFormat('dd-MM-yyyy').format(DateTime.parse(upcomingHoliday.holidayDate))} - ${upcomingHoliday.holidayName}",
+                                style: TextStyle(fontSize: 17, color: muColor)),
+                        ]),
+                  ),
                 ),
               ),
             ),
+
           ],
         ),
       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ict_mu_students/Controllers/timetable_controller.dart';
 import 'package:ict_mu_students/Model/timetable_model.dart';
-import '../../Helper/Colors.dart';
+import '../../Helper/colors.dart';
 import '../../Widgets/adaptive_refresh_indicator.dart';
 import '../../Widgets/heading_1.dart';
 import '../../Widgets/timetable_card.dart';

@@ -2,20 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:ict_mu_students/Bindings/attendance_show_binding.dart';
+import 'package:ict_mu_students/Bindings/campus_drive_bindings.dart';
+import 'package:ict_mu_students/Bindings/event_binding.dart';
 import 'package:ict_mu_students/Bindings/faculty_contact_binding.dart';
 import 'package:ict_mu_students/Bindings/holiday_list_binding.dart';
+import 'package:ict_mu_students/Bindings/leave_binding.dart';
+import 'package:ict_mu_students/Bindings/placement_binding.dart';
 import 'package:ict_mu_students/Bindings/profile_binding.dart';
 import 'package:ict_mu_students/Firebase/firebase_messaging_service.dart';
 import 'package:ict_mu_students/Preference/preference_manager.dart';
 import 'package:ict_mu_students/Screens/Authentication/forgot_password.dart';
+import 'package:ict_mu_students/Screens/Events/event.dart';
+import 'package:ict_mu_students/Screens/Events/event_details.dart';
 import 'package:ict_mu_students/Screens/Holiday/holiday_list.dart';
+import 'package:ict_mu_students/Screens/Leave/leaves.dart';
+import 'package:ict_mu_students/Screens/Placements/campus_drive_details.dart';
+import 'package:ict_mu_students/Screens/Placements/companies.dart';
+import 'package:ict_mu_students/Screens/Placements/interview_bank.dart';
 import 'package:ict_mu_students/Screens/Splash/main_splash.dart';
 import 'package:ict_mu_students/Screens/Timetable/timetable.dart';
-import 'package:ict_mu_students/Screens/ZoomLink/zoom_link.dart';
 import 'Bindings/change_password_binding.dart';
+import 'Bindings/company_list_binding.dart';
 import 'Bindings/exam_list_binding.dart';
+import 'Bindings/interview_bank_binding.dart';
+import 'Bindings/student_rounds_binding.dart';
 import 'Bindings/timetable_binding.dart';
-import 'Bindings/zoom_link_binding.dart';
 import 'Helper/colors.dart';
 import 'Screens/Attendance/attendance_show.dart';
 import 'Screens/Authentication/change_password.dart';
@@ -23,7 +34,10 @@ import 'Screens/Examination/exam_list.dart';
 import 'Screens/Faculty/faculty_contact.dart';
 import 'Screens/Home/dashboard_home.dart';
 import 'Screens/Authentication/login.dart';
-import 'Screens/PlacementScreen.dart';
+import 'Screens/Placements/campus_drive.dart';
+import 'Screens/Placements/interview_bank_details.dart';
+import 'Screens/Placements/placements.dart';
+import 'Screens/Placements/students_rounds.dart';
 import 'Screens/Profile/profile.dart';
 
 Future<void> main() async {
@@ -119,10 +133,55 @@ class MyApp extends StatelessWidget {
             binding: HolidayListBinding(),
             page: () => const HolidayList()),
         GetPage(
-            name: "/meetingList",
+            name: "/placements",
             transition: Transition.fadeIn,
-            binding: ZoomLinkBinding(),
-            page: () => const ZoomLink()),
+            binding: PlacementBinding(),
+            page: () => const PlacementScreen()),
+        GetPage(
+            name: "/companyList",
+            transition: Transition.fadeIn,
+            binding: CompanyListBinding(),
+            page: () => const CompanyScreen()),
+        GetPage(
+            name: "/campusDriveList",
+            transition: Transition.fadeIn,
+            binding: CampusDriveBindings(),
+            page: () => const CampusDriveScreen()),
+        GetPage(
+            name: "/campusDriveDetail",
+            transition: Transition.fadeIn,
+            binding: CampusDriveBindings(),
+            page: () => const CampusDriveDetailScreen()),
+        GetPage(
+            name: "/leave",
+            transition: Transition.fadeIn,
+            binding: LeaveBinding(),
+            page: () => const LeaveScreen()),
+        GetPage(
+            name: "/studentRoundsDetail",
+            transition: Transition.fadeIn,
+            binding: StudentRoundsBinding(),
+            page: () => const StudentRoundsScreen()),
+        GetPage(
+            name: "/events",
+            transition: Transition.fadeIn,
+            binding: EventBinding(),
+            page: () => const EventList()),
+        GetPage(
+            name: "/eventDetails",
+            transition: Transition.fadeIn,
+            binding: EventBinding(),
+            page: () => const EventDetails()),
+        GetPage(
+            name: "/interviews",
+            transition: Transition.fadeIn,
+            binding: InterviewBankBinding(),
+            page: () => const InterviewBankScreen()),
+        GetPage(
+            name: "/interviewDetails",
+            transition: Transition.fadeIn,
+            binding: InterviewBankBinding(),
+            page: () => const InterviewBankDetails()),
       ],
       initialRoute: "/splashscreen",
     );

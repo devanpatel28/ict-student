@@ -95,9 +95,9 @@ class StudentAttendanceScreen extends GetView<AttendanceShowController> {
                                 ],
                               ),
                             ),
-                            const Padding(
+                             Padding(
                               padding: EdgeInsets.all(3.0),
-                              child: Divider(),
+                              child: Divider(color: muGrey2),
                             ),
                             controller.avgAttendance > 0 &&
                                     controller.avgAttendance < 75
@@ -138,9 +138,9 @@ class StudentAttendanceScreen extends GetView<AttendanceShowController> {
                                           );
                                         },
                                       ),
-                                      const Padding(
-                                        padding: EdgeInsets.all(3.0),
-                                        child: Divider(),
+                                      Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: Divider(color: muGrey2),
                                       ),
                                     ],
                                   )
@@ -188,9 +188,9 @@ class StudentAttendanceScreen extends GetView<AttendanceShowController> {
                                       ),
                               ],
                             ),
-                            const Padding(
-                              padding: EdgeInsets.all(3.0),
-                              child: Divider(),
+                            Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: Divider(color: muGrey2),
                             ),
                             const Heading1(
                                 text: "Attendance Report",

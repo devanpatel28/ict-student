@@ -21,35 +21,37 @@ class HolidayListController extends GetxController {
   void onInit() {
     super.onInit();
     fetchHolidayList();
-  }
-  @override
-  void onReady() {
-    super.onReady();
     Future.delayed(const Duration(milliseconds: 500), () {
-      scrollToUpcomingHoliday(holidayDataList);
+      scrollToUpcomingHoliday();
     });
   }
-  void scrollToUpcomingHoliday(List<HolidayListModel> holidays) {
+
+  void scrollToUpcomingHoliday() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (holidayDataList.isEmpty) return; // No holidays available
+
       DateTime today = DateTime.now();
-      for (int i = 0; i < holidays.length; i++) {
-        DateTime holidayDate = DateFormat('yyyy-MM-dd').parse(holidays[i].holidayDate);
+      for (int i = 0; i < holidayDataList.length; i++) {
+        DateTime holidayDate = DateFormat('yyyy-MM-dd').parse(holidayDataList[i].holidayDate);
         if (holidayDate.isAfter(today)) {
           highlightedIndex = i;
+          update(); // Force UI to rebuild
           scrollController.animateTo(
-            i * 100,
+            i * 75, // Adjust based on your UI row height
             duration: const Duration(seconds: 1),
             curve: Curves.easeInOut,
           );
-          break;
+          return;
         }
       }
     });
   }
 
-
   Future<void> fetchHolidayList() async {
     isLoadingHolidayList.value = true;
+    highlightedIndex = null; // Reset before fetching
+    update();
+
     await internetController.checkConnection();
     if (!internetController.isConnected.value) {
       isLoadingHolidayList.value = false;
@@ -74,10 +76,8 @@ class HolidayListController extends GetxController {
         holidayDataList.assignAll(
           responseData.map((data) => HolidayListModel.fromJson(data)).toList(),
         );
-        // After data is fetched, trigger scroll to upcoming holiday
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          scrollToUpcomingHoliday(holidayDataList);
-        });
+
+        scrollToUpcomingHoliday(); // Ensure scrolling + highlighting happens after list update
       } else {
         final message = json.decode(response.body)['message'] ?? 'An error occurred';
         Get.snackbar(
@@ -97,5 +97,6 @@ class HolidayListController extends GetxController {
       isLoadingHolidayList.value = false;
     }
   }
+
 
 }
