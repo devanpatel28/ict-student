@@ -5,6 +5,7 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:ict_mu_students/Controllers/event_controller.dart';
 import 'package:ict_mu_students/Helper/size.dart';
 import 'package:ict_mu_students/Widgets/heading_1.dart';
+import '../../Animations/slide_zoom_in_animation.dart';
 import '../../Helper/Components.dart';
 import '../../Helper/colors.dart';
 import '../../Model/event_model.dart';
@@ -91,43 +92,45 @@ class EventList extends GetView<EventController> {
                   itemCount: controller.filteredEventDataList.length,
                   itemBuilder: (context, index) {
                     EventModel event = controller.filteredEventDataList[index];
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: muGrey,
-                          borderRadius: BorderRadius.all(Radius.circular(borderRad))
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: InkWell(
-                            onTap: () => Get.toNamed('eventDetails',arguments: {'event':event}),
-                            child: Column(
-                              children: [
-                                Heading1(text: event.eventTitle, fontSize: 2.5, leftPadding: 5),
-                                SizedBox(height: 20,
-                                  child: Divider(color: muGrey2),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        HugeIcon(icon: HugeIcons.strokeRoundedCalendar01, color: muColor),
-                                        SizedBox(width: 10,),
-                                        Text(DateFormat('dd-MM-yyyy').format(DateFormat('yyyy-MM-dd hh:mm:ss').parse(event.eventDatetime))),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        HugeIcon(icon: HugeIcons.strokeRoundedClock03, color: muColor),
-                                        SizedBox(width: 10,),
-                                        Text(DateFormat('hh:mm a').format(DateFormat('yyyy-MM-dd hh:mm:ss').parse(event.eventDatetime))),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
+                    return SlideZoomInAnimation(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: muGrey,
+                            borderRadius: BorderRadius.all(Radius.circular(borderRad))
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: InkWell(
+                              onTap: () => Get.toNamed('eventDetails',arguments: {'event':event}),
+                              child: Column(
+                                children: [
+                                  Heading1(text: event.eventTitle, fontSize: 2.5, leftPadding: 5),
+                                  SizedBox(height: 20,
+                                    child: Divider(color: muGrey2),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          HugeIcon(icon: HugeIcons.strokeRoundedCalendar01, color: muColor),
+                                          SizedBox(width: 10,),
+                                          Text(DateFormat('dd-MM-yyyy').format(DateFormat('yyyy-MM-dd hh:mm:ss').parse(event.eventDatetime))),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          HugeIcon(icon: HugeIcons.strokeRoundedClock03, color: muColor),
+                                          SizedBox(width: 10,),
+                                          Text(DateFormat('hh:mm a').format(DateFormat('yyyy-MM-dd hh:mm:ss').parse(event.eventDatetime))),
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),

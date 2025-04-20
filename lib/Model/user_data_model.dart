@@ -105,9 +105,10 @@ class ClassDetails {
   int? classId;
   String? className;
   int? semester;
+  int? semId;
   String? batch;
 
-  ClassDetails({this.classId, this.className, this.semester, this.batch});
+  ClassDetails({this.classId,this.semId, this.className, this.semester, this.batch});
 
   factory ClassDetails.fromJson(Map<String, dynamic> json) {
     return ClassDetails(
@@ -115,6 +116,7 @@ class ClassDetails {
       className: json['classname'],
       semester: json['semester'],
       batch: json['batch'],
+      semId: json['sem_id']
     );
   }
 
@@ -124,6 +126,7 @@ class ClassDetails {
       'classname': className,
       'semester': semester,
       'batch': batch,
+      'sem_id':semId
     };
   }
 }

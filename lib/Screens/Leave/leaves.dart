@@ -323,13 +323,19 @@ class LeaveScreen extends GetView<LeaveController> {
                                                       child: Column(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          Text(
-                                                            "Reason: ${leave.reason}",
-                                                            maxLines: isExpanded ? null : 1,
-                                                            overflow: isExpanded ? null : TextOverflow.ellipsis,
-                                                            style: TextStyle(
-                                                              fontSize: getSize(context, 2),
-                                                              fontWeight: FontWeight.bold,
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(
+                                                                right: 100), // Prevent overlap with tag
+                                                            child: Text(
+                                                              "Reason: ${leave.reason}",
+                                                              maxLines: isExpanded ? null : 1,
+                                                              overflow: isExpanded
+                                                                  ? null
+                                                                  : TextOverflow.ellipsis,
+                                                              style: TextStyle(
+                                                                fontSize: getSize(context, 2),
+                                                                fontWeight: FontWeight.bold,
+                                                              ),
                                                             ),
                                                           ),
                                                           if (needsExpansion)

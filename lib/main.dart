@@ -5,6 +5,7 @@ import 'package:ict_mu_students/Bindings/attendance_show_binding.dart';
 import 'package:ict_mu_students/Bindings/campus_drive_bindings.dart';
 import 'package:ict_mu_students/Bindings/event_binding.dart';
 import 'package:ict_mu_students/Bindings/faculty_contact_binding.dart';
+import 'package:ict_mu_students/Bindings/feedback_binding.dart';
 import 'package:ict_mu_students/Bindings/holiday_list_binding.dart';
 import 'package:ict_mu_students/Bindings/leave_binding.dart';
 import 'package:ict_mu_students/Bindings/placement_binding.dart';
@@ -32,6 +33,7 @@ import 'Screens/Attendance/attendance_show.dart';
 import 'Screens/Authentication/change_password.dart';
 import 'Screens/Examination/exam_list.dart';
 import 'Screens/Faculty/faculty_contact.dart';
+import 'Screens/Feedback/feedback.dart';
 import 'Screens/Home/dashboard_home.dart';
 import 'Screens/Authentication/login.dart';
 import 'Screens/Placements/campus_drive.dart';
@@ -182,6 +184,11 @@ class MyApp extends StatelessWidget {
             transition: Transition.fadeIn,
             binding: InterviewBankBinding(),
             page: () => const InterviewBankDetails()),
+        GetPage(
+            name: "/feedback",
+            transition: Transition.fadeIn,
+            binding: FeedbackBinding(),
+            page: () =>  FeedbackScreen()),
       ],
       initialRoute: "/splashscreen",
     );

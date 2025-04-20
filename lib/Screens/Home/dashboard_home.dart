@@ -137,6 +137,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         iconData: HugeIcons.strokeRoundedRanking,
                         route: "/events",
                         ),
+                    TapIcon(
+                        name: "Anonymous Feedback",
+                        iconData: HugeIcons.strokeRoundedBubbleChatSecure,
+                        route: "/feedback",
+                        routeArg: {
+                          'student_id': userData.studentDetails?.studentId,
+                          'sem_id':userData.classDetails?.semId
+                        }),
                   ],
                 ),
               ),

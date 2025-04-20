@@ -17,9 +17,9 @@ class HtmlClickableText extends StatelessWidget {
   Widget build(BuildContext context) {
     // Replace \r\n, \n, \r with <br> to handle line breaks in HTML
     final processedHtml = htmlData
-        .replaceAll(r'\r\n', '<br>')
-        .replaceAll(r'\n', '<br>')
-        .replaceAll(r'\r', '<br>');
+        .replaceAll(r'\r\n', '')
+        .replaceAll(r'\n', '')
+        .replaceAll(r'\r', '');
 
     return SelectableRegion(
       focusNode: FocusNode(),

@@ -36,6 +36,10 @@ String interviewBankListAPI = '$host$serverPath/InterviewBank/list';
 String eventListAPI = '$host$serverPath/Event/list';
 String upcomingEventAPI = '$host$serverPath/Event/getUpcomingEvent';
 
+String feedbackHistory = '$host$serverPath/Feedback/by-student';
+String feedbackAdd = '$host$serverPath/Feedback/add';
+String facultyListAPI = '$host$serverPath/Faculty/getFacultyListByStudent';
+
 String studentImageAPI(gr) {
   String api =
       "https://student.marwadiuniversity.ac.in:553/handler/getImage.ashx?SID=$gr";
