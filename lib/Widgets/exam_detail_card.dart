@@ -1,15 +1,21 @@
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:ict_mu_students/Helper/Components.dart';
-import 'package:ict_mu_students/Helper/colors.dart';
-import 'package:ict_mu_students/Helper/size.dart';
 import 'package:intl/intl.dart';
+
+import '../Helper/Colors.dart';
+import '../Helper/Components.dart';
+import '../Helper/size.dart';
 
 class ExamDetailCard extends StatelessWidget {
   final String subjectShortName;
   final String subjectName;
   final String examType;
   final String examDate;
+  final int examResultStatus;
+  final int totalMarks;
+  final double obtainMarks;
+  final String grade;
 
   const ExamDetailCard({
     super.key,
@@ -17,6 +23,10 @@ class ExamDetailCard extends StatelessWidget {
     required this.subjectName,
     required this.examType,
     required this.examDate,
+    required this.examResultStatus,
+    required this.totalMarks,
+    required this.obtainMarks,
+    required this.grade,
   });
 
   @override
@@ -27,7 +37,7 @@ class ExamDetailCard extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: muGrey, borderRadius: BorderRadius.circular(borderRad),
+              color: muGrey, borderRadius: BorderRadius.circular(borderRad),
 
             ),
             child: Padding(
@@ -38,15 +48,15 @@ class ExamDetailCard extends StatelessWidget {
                     height: 60,
                     width: 60,
                     decoration:
-                        BoxDecoration(color: muColor50, shape: BoxShape.circle),
+                    BoxDecoration(color: muColor50, shape: BoxShape.circle),
                     child: Center(
                         child: Text(
-                      subjectShortName,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: backgroundColor,
-                          fontWeight: FontWeight.bold),
-                    )),
+                          subjectShortName,
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: backgroundColor,
+                              fontWeight: FontWeight.bold),
+                        )),
                   ),
                   const SizedBox(
                     width: 10,
@@ -94,7 +104,45 @@ class ExamDetailCard extends StatelessWidget {
                                   ))
                           )
                         ],
-                      )
+                      ),
+                      if(examResultStatus==1)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0,8,0,8),
+                              child: Container(height: 1,width: getWidth(context, 0.7),color: muColor,),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: (grade=='F'||grade=='Ab')?Colors.red.withOpacity(0.3):Colors.green.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(borderRad)
+
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    HugeIcon(
+                                        icon: HugeIcons.strokeRoundedDocumentValidation,
+                                        color: muColor),
+                                    const SizedBox(width: 5),
+                                    SizedBox(
+                                        width: getWidth(context, 0.60),
+                                        child: Text("$totalMarks / $obtainMarks - ( $grade )",
+                                            style: const TextStyle(
+                                              fontSize: 17,
+                                              overflow: TextOverflow.visible,
+                                            ))
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
                     ],
                   )
                 ],
@@ -123,4 +171,4 @@ class ExamDetailCard extends StatelessWidget {
       ),
     );
   }
-  }
+}

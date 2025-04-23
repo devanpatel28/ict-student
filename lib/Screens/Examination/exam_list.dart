@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ict_mu_students/Controllers/exam_list_controller.dart';
-import 'package:ict_mu_students/Model/exam_list_model.dart';
-import 'package:ict_mu_students/Widgets/exam_detail_card.dart';
-import '../../Helper/colors.dart';
+import '../../Controllers/exam_list_controller.dart';
+import '../../Helper/Colors.dart';
+import '../../Model/exam_list_model.dart';
 import '../../Widgets/adaptive_refresh_indicator.dart';
+import '../../Widgets/exam_detail_card.dart';
 import '../Exception/data_not_found.dart';
 import '../Loading/adaptive_loading_screen.dart';
 
@@ -15,7 +15,7 @@ class ExamList extends GetView<ExamListController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Examination"),
+        title: const Text("Examination and Results"),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_rounded, color: backgroundColor),
@@ -42,7 +42,12 @@ class ExamList extends GetView<ExamListController> {
                     subjectShortName: exam.subjectShortname,
                     subjectName: exam.subjectName,
                     examDate: exam.examDate,
-                    examType: exam.examType),
+                    examType: exam.examType,
+                    examResultStatus: exam.examResultStatus,
+                    totalMarks: exam.totalMarks,
+                    obtainMarks: exam.obtainMarks,
+                    grade: exam.grade
+                ),
               );
             },
           )
